@@ -1,38 +1,163 @@
-.App {
+.App-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #F5F5F5;
+}
+
+.App-container .Todo-container-parent {
+  height: inherit;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.App-container .Todo-container-parent .Child-container-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-container .Todo-container-parent .Child-container-parent .Headline {
+  background-image: -webkit-gradient(linear, left top, right top, from(#06f), to(#fbf472f7));
+  background-image: linear-gradient(90deg, #06f, #fbf472f7);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-container .Todo-container-parent .Child-container-parent .input-container-main {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App-container .Todo-container-parent .Child-container-parent .input-container-main .add-todo-input {
+  width: 90%;
+  padding: 20px 20px 20px 70px;
+  border: none;
+  border-radius: 5px;
+  height: 100%;
+  outline: none;
+  font-size: 22px;
+  color: #808080;
+  font-weight: 550;
+  background: #fefefe;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .input-container-main .add-todo-input::-webkit-input-placeholder {
+  color: rgba(188, 184, 184, 0.5);
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .input-container-main .add-todo-input:-ms-input-placeholder {
+  color: rgba(188, 184, 184, 0.5);
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .input-container-main .add-todo-input::-ms-input-placeholder {
+  color: rgba(188, 184, 184, 0.5);
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .input-container-main .add-todo-input::placeholder {
+  color: rgba(188, 184, 184, 0.5);
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 0.5em;
 }
 
-.App-link {
-  color: #61dafb;
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .list-options {
+  display: none;
+  margin-left: -1.5em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items {
+  -webkit-transition: 0.1s ease;
+  transition: 0.1s ease;
+  border-radius: 10px;
+  font-size: 22px;
 }
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  background-color: #f6f68bf7;
+  -webkit-box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
+          box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
+  border-radius: 10px;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .item-checked {
+  color: grey;
+  background-color: #F5F5F5;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+  text-decoration: line-through;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .item-unchecked {
+  color: #464d54;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .Bottom-nav {
+  background-color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: white;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .Bottom-nav .show-case {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 0.5em 0 0.5em;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .Bottom-nav .padding {
+  position: relative;
+}
+/*# sourceMappingURL=App.css.map */

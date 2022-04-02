@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from "@apollo/client";
+
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import TodoContainer from "./components/templates/TodoContainer";
+
+//--------providing custom themes-------------
+const theme = createTheme({});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App-container">
+        <div className="Todo-container-parent">
+          <TodoContainer className="Todo-container-child"></TodoContainer>
+        </div>
+      </div>
+    </ThemeProvider>
   );
 }
 
