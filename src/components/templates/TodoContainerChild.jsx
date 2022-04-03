@@ -21,10 +21,12 @@ import CommentIcon from "@mui/icons-material/Comment";
 import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
+import { useMutation } from "@apollo/client";
 import MenuItem from "@mui/material/MenuItem";
 import Utility from "../../utility";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { add_todo } from "../Query";
 import Stack from "@mui/material/Stack";
 
 //--------Customised alerts------------------
@@ -32,22 +34,21 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function TodoContainerChild() {
+function TodoContainerChild({ Todos }) {
   const [value, setValue] = React.useState("recents");
+  const inputref = React.useRef([]);
   const [checked, setChecked] = React.useState([0]);
   const [newTodo, setnewTodo] = React.useState("");
   const [openAlert, setAlert] = React.useState(false);
   const [alertMsg, setMsg] = React.useState("");
-  const [todos, setTodos] = React.useState([
-    { id: "1", title: "Problem solving skills improves", completed: false },
-    {
-      id: "2",
-      title: "Solving min 10 of from data structures",
-      completed: false,
-    },
-    { id: "3", title: "Have to go for market before 9", completed: false },
-    { id: "4", title: "Complete all work before 10pm", completed: false },
-  ]);
+  const [edit, setEdit] = React.useState(false);
+  const [currentKey, setKey] = React.useState(0);
+  const [editId, setEditID] = React.useState(-1);
+  const [editedTxt, setEditTxt] = React.useState("");
+  const [todos, setTodos] = React.useState([]);
+  const [addTodo, { data, loading, error }] = useMutation(add_todo);
+  console.log(data);
+  console.log(error);
   //-------------utility classes for creation of objects----
   var object = new Utility(todos);
   var ESCAPE_KEY = 27;
@@ -56,18 +57,59 @@ function TodoContainerChild() {
   //--------- components updation while first page loads and update in todo list------
   React.useEffect(() => {
     console.log("jhffs");
-  }, [todos]);
+    setTodos(Todos);
+  }, [Todos]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event, id) => {
+    setEditID(id);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setEditID(-1);
+    setEdit(false);
     setAnchorEl(null);
+  };
+
+  const handleEdit = () => {
+    setEdit(true);
+    setAnchorEl(null);
+    inputref.current[0].focus();
+  };
+
+  //---------getting all refs of inputs-------------
+  inputref.current = [];
+  const callrefs = (e) => {
+    if (e && !inputref.current.includes(e)) {
+      inputref.current.push(e);
+    }
   };
   //--------------handling check list -----------
   const handleCheck = (value) => {
     setTodos(object.handleCheck(value));
+  };
+
+  // --------handleKeyDownedit---------
+  const handleKeydownEdit = (event, val) => {
+    if (event.which === ESCAPE_KEY) {
+      setEdit(false);
+      setEditID(null);
+      setEditTxt("");
+    } else if (event.which === ENTER_KEY) {
+      handleEditSubmit(event, val);
+    }
+  };
+
+  //------handling edit submit--------
+  const handleEditSubmit = (e, value) => {
+    if (value !== "") {
+      setTodos(object.handleSubmitEdit(e, value));
+      setAlert(true);
+      setMsg("Successfully edited...!");
+      setEdit(false);
+      setEditID(null);
+      setEditTxt("");
+    }
   };
   //--------toast for alert --------
   const handleCloseAlert = (event, reason) => {
@@ -82,11 +124,13 @@ function TodoContainerChild() {
     var value = newTodo;
 
     if (e.which === ENTER_KEY) {
+      addTodo({ variables: { title: newTodo } });
       if (value !== "") {
         setTodos(object.handleSubmit(value));
         setMsg("Added to your todo..!");
         setAlert(true);
       }
+      setnewTodo("");
     }
   }
 
@@ -133,6 +177,7 @@ function TodoContainerChild() {
       <div className="input-container-main">
         <input
           type="text"
+          value={newTodo}
           className="add-todo-input"
           placeholder="What needs to be done...?"
           onKeyDown={(e) => handleSubmit(e)}
@@ -155,7 +200,7 @@ function TodoContainerChild() {
                 bgcolor: "inherit",
               }}
             >
-              {todos.map((value) => {
+              {todos.map((value, key) => {
                 const labelId = `checkbox-list-label-${value.id}`;
 
                 return (
@@ -169,14 +214,14 @@ function TodoContainerChild() {
                       key={value}
                       //   onClick={() => handleCheck(value.id)}
                       secondaryAction={
-                        <div>
+                        <div className="more-options">
                           <IconButton
                             aria-label="more"
                             id="long-button"
                             aria-controls={open ? "long-menu" : undefined}
                             aria-expanded={open ? "true" : undefined}
                             aria-haspopup="true"
-                            onClick={handleClick}
+                            onClick={(e) => handleClick(e, value.id, key)}
                           >
                             <MoreVertIcon />
                           </IconButton>
@@ -189,7 +234,7 @@ function TodoContainerChild() {
                             open={open}
                             onClose={handleClose}
                           >
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={handleEdit}>
                               <ListItemIcon>
                                 <ModeEditIcon fontSize="small" />
                               </ListItemIcon>
@@ -206,6 +251,26 @@ function TodoContainerChild() {
                       }
                       disablePadding
                     >
+                      <input
+                        key={value}
+                        id={value.id}
+                        ref={callrefs}
+                        type="text"
+                        onChange={(e) => setEditTxt(e.target.value, value.id)}
+                        onKeyDown={(e) => handleKeydownEdit(e, value.id)}
+                        onBlur={(e) => {
+                          setEdit(false);
+                          setEditID(null);
+                          setEditTxt("");
+                        }}
+                        placeholder="Edit over here.....!"
+                        className={
+                          editId === value.id && edit === true
+                            ? "edit-todo-visible"
+                            : "edit-todo-notvisible"
+                        }
+                      />
+
                       <ListItemButton
                         role={undefined}
                         className={
@@ -230,6 +295,7 @@ function TodoContainerChild() {
                             fontSize: "17px",
                             fontFamily: "cursive",
                             fontWeight: "600",
+                            height: "auto",
                           }}
                         />
                       </ListItemButton>

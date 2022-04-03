@@ -59,11 +59,18 @@
                     transition: 0.1s ease;
                     border-radius: 10px;
                     font-size: 22px;
+                    position: relative;
+                    word-wrap: break-word;
+                    white-space: pre-wrap;
+                    word-break: break-word;
                     &:hover{
                         transform:scale(1.03) ;
                         background-color: #f6f68bf7;
                         box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
                         border-radius: 10px;
+                        .edit-todo-visible{
+                            background-color: inherit;
+                        }
                         
                     }
                     .item-checked{
@@ -71,11 +78,45 @@
                         background-color: #F5F5F5;
                         transition: 0.5s ease-in;
                         text-decoration: line-through;
+                        
+                       
                     }
                     .item-unchecked{
                         color: #464d54;
-                        
+                      
                         transition: 0.5s ease-in;
+                    }
+                    .edit-todo-visible{
+                        position: absolute;
+                        z-index: 999;
+                        width: 88%;
+                        left: 10%;
+                        border: none;
+                        outline: none;
+                        font-size: 20px;
+                        font-family: cursive;
+                        font-weight: 600;
+                        color: #464d54;
+                        caret-color: black;
+                        +.item-unchecked{
+                            visibility: hidden;
+                        }
+                        +.item-checked{
+                            visibility: hidden;
+                        }
+                       
+                    }
+                    .edit-todo-notvisible{
+                        display: none;
+                    }
+                    
+                    .more-options{
+                        visibility: hidden;
+                    }
+                    &:hover{
+                        .more-options{
+                            visibility: visible;
+                        }
                     }
                 }
               

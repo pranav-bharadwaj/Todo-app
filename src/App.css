@@ -107,6 +107,10 @@
   transition: 0.1s ease;
   border-radius: 10px;
   font-size: 22px;
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items:hover {
@@ -116,6 +120,10 @@
   -webkit-box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
           box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
   border-radius: 10px;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items:hover .edit-todo-visible {
+  background-color: inherit;
 }
 
 .App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .item-checked {
@@ -130,6 +138,40 @@
   color: #464d54;
   -webkit-transition: 0.5s ease-in;
   transition: 0.5s ease-in;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .edit-todo-visible {
+  position: absolute;
+  z-index: 999;
+  width: 88%;
+  left: 10%;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-family: cursive;
+  font-weight: 600;
+  color: #464d54;
+  caret-color: black;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .edit-todo-visible + .item-unchecked {
+  visibility: hidden;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .edit-todo-visible + .item-checked {
+  visibility: hidden;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .edit-todo-notvisible {
+  display: none;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .more-options {
+  visibility: hidden;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items:hover .more-options {
+  visibility: visible;
 }
 
 .App-container .Todo-container-parent .Child-container-parent .Bottom-nav {
