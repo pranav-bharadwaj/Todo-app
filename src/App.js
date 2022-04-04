@@ -28,8 +28,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       "content-type": "application/json",
-      "x-hasura-admin-secret":
-        "wUXfdRRIVC9a5sSbokV9BTIBogF2JyNTAXQ3heHoyAs5IEXpWKp37cWN7RVrAOsz",
+      "x-hasura-admin-secret": process.env.REACT_APP_API_KEY,
     },
   };
 });

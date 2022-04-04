@@ -1,11 +1,15 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .App-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #F5F5F5;
 }
 
 .App-container .Todo-container-parent {
-  height: inherit;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -129,15 +133,15 @@
 .App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .item-checked {
   color: grey;
   background-color: #F5F5F5;
-  -webkit-transition: 0.5s ease-in;
-  transition: 0.5s ease-in;
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
   text-decoration: line-through;
 }
 
 .App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .item-unchecked {
   color: #464d54;
-  -webkit-transition: 0.5s ease-in;
-  transition: 0.5s ease-in;
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .edit-todo-visible {
@@ -199,7 +203,170 @@
   cursor: pointer;
 }
 
+.App-container .Todo-container-parent .Child-container-parent .Bottom-nav .last-case {
+  min-width: 7em;
+}
+
+.App-container .Todo-container-parent .Child-container-parent .Bottom-nav .last-case:hover {
+  text-decoration: underline;
+}
+
 .App-container .Todo-container-parent .Child-container-parent .Bottom-nav .padding {
   position: relative;
+}
+
+.App-container .typo {
+  color: gray;
+  font-size: 12px;
+}
+
+.App-container .upper {
+  margin-top: 8em;
+}
+
+@media only screen and (max-width: 470px) {
+  .headline-sub {
+    display: none;
+  }
+  .input-container-main {
+    width: 50%;
+  }
+  .add-todo-input {
+    margin-left: -1em;
+    font-size: 18px;
+  }
+  .item-left {
+    display: none;
+  }
+  .show-case {
+    margin: -1em;
+  }
+}
+
+.loader {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+}
+
+.loader:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.circular {
+  -webkit-animation: rotate 1s linear infinite;
+          animation: rotate 1s linear infinite;
+  height: 50%;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+          animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@-webkit-keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+
+body {
+  background-color: #eee;
+}
+
+.showbox {
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 /*# sourceMappingURL=App.css.map */
