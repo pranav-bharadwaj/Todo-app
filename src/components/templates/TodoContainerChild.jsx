@@ -422,10 +422,12 @@ function TodoContainerChild({ Todos }) {
                         <ListItemText
                           id={labelId}
                           primary={value.title}
+                          className="list-text"
                           primaryTypographyProps={{
-                            fontSize: "17px",
+                            fontSize: "19px",
+
                             fontFamily: "cursive",
-                            fontWeight: "600",
+                            fontWeight: "900",
                             height: "auto",
                           }}
                         />

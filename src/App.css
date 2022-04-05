@@ -6,7 +6,7 @@
 .App-container {
   width: 100%;
   min-height: 100vh;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .App-container .Todo-container-parent {
@@ -132,7 +132,7 @@
 
 .App-container .Todo-container-parent .Child-container-parent .List-items-parent .List-items .item-checked {
   color: grey;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   -webkit-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
   text-decoration: line-through;
@@ -250,7 +250,7 @@
 }
 
 .loader:before {
-  content: '';
+  content: "";
   display: block;
   padding-top: 100%;
 }

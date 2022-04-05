@@ -1,192 +1,177 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-.App-container{
+.App-container {
+  width: 100%;
+  // height: 200vh;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  .Todo-container-parent {
     width: 100%;
-    // height: 200vh;
-    min-height: 100vh;
-    background-color: #F5F5F5;
-    .Todo-container-parent{
-        
-        
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        .Child-container-parent{
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-            
-            .Headline{
-                background-image: linear-gradient(90deg,#06f,#fbf472f7);
-               background-clip: text;
-               -webkit-text-fill-color: transparent;
-               
-            }
-            .input-container-main{
-                width: 100%;
-         
-               
-                .add-todo-input{
-                    
-                    width: 90%;
-                    padding: 20px 20px 20px 70px;
-                    border: none;
-                    border-radius: 5px;
-                    height: 100%;
-                    outline: none;
-                    font-size: 22px;
-                    color: #808080;
+    display: flex;
+    justify-content: center;
+    .Child-container-parent {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
 
-                    font-weight: 550;
-                    background:rgb(254,254,254);
-                    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-                &::placeholder{
-                    color:rgba(188, 184, 184,0.5);
-                    font-family: inherit;
-                    font-style: italic;
-                    font-weight: 600;
-                    
-                }
-            
-               }
-            }
-            .List-items-parent{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                margin-top: 0.5em;
-                
-                .list-options{
-                    display: none;
-                    margin-left: -1.5em;
-                }
-                .List-items{
-                    transition: 0.1s ease;
-                    border-radius: 10px;
-                    font-size: 22px;
-                    position: relative;
-                    word-wrap: break-word;
-                    white-space: pre-wrap;
-                    word-break: break-word;
-                    &:hover{
-                        transform:scale(1.03) ;
-                        background-color: #f6f68bf7;
-                        box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
-                        border-radius: 10px;
-                        .edit-todo-visible{
-                            background-color: inherit;
-                        }
-                        
-                    }
-                    .item-checked{
-                        color: grey;
-                        background-color: #F5F5F5;
-                        transition: 0.2s ease-in;
-                        text-decoration: line-through;
-                        
-                       
-                    }
-                    .item-unchecked{
-                        color: #464d54;
-                      
-                        transition: 0.2s ease-in;
-                    }
-                    .edit-todo-visible{
-                        position: absolute;
-                        z-index: 999;
-                        width: 88%;
-                        left: 10%;
-                        border: none;
-                        outline: none;
-                        font-size: 20px;
-                        font-family: cursive;
-                        font-weight: 600;
-                        color: #464d54;
-                        caret-color: black;
-                        +.item-unchecked{
-                            visibility: hidden;
-                        }
-                        +.item-checked{
-                            visibility: hidden;
-                        }
-                       
-                    }
-                    .edit-todo-notvisible{
-                        display: none;
-                    }
-                    
-                    .more-options{
-                        visibility: hidden;
-                    }
-                    &:hover{
-                        .more-options{
-                            visibility: visible;
-                        }
-                    }
-                }
-              
-            }
-            .Bottom-nav{
-                background-color: red;
-                display: flex;
-                justify-content: space-around;
-                background-color: white;
-                
-                .show-case{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 0 0.5em 0 0.5em;
-                    font-size: 15px;
-                    
-                    cursor: pointer;
-                   
-                }
-                .last-case{
-                    min-width: 7em;
-                    // visibility: hidden;
-                    &:hover{
-                        text-decoration: underline;
-                    }
-                }
-                .padding{
-                    position: relative;
-                }
-            }
+      .Headline {
+        background-image: linear-gradient(90deg, #06f, #fbf472f7);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .input-container-main {
+        width: 100%;
+
+        .add-todo-input {
+          width: 90%;
+          padding: 20px 20px 20px 70px;
+          border: none;
+          border-radius: 5px;
+          height: 100%;
+          outline: none;
+          font-size: 22px;
+          color: #808080;
+
+          font-weight: 550;
+          background: rgb(254, 254, 254);
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          &::placeholder {
+            color: rgba(188, 184, 184, 0.5);
+            font-family: inherit;
+            font-style: italic;
+            font-weight: 600;
+          }
         }
-    
+      }
+      .List-items-parent {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 0.5em;
+
+        .list-options {
+          display: none;
+          margin-left: -1.5em;
+        }
+        .List-items {
+          transition: 0.1s ease;
+          border-radius: 10px;
+          font-size: 22px;
+          position: relative;
+          word-wrap: break-word;
+          white-space: pre-wrap;
+          word-break: break-word;
+          &:hover {
+            transform: scale(1.03);
+            background-color: #f6f68bf7;
+            box-shadow: 0 4px 15px 0 rgba(228, 220, 220, 0.75);
+            border-radius: 10px;
+            .edit-todo-visible {
+              background-color: inherit;
+            }
+          }
+         
+          .item-checked {
+            color: grey;
+            background-color: #f5f5f5;
+            transition: 0.2s ease-in;
+            text-decoration: line-through;
+          }
+          .item-unchecked {
+            color: #464d54;
+
+            transition: 0.2s ease-in;
+          }
+          .edit-todo-visible {
+            position: absolute;
+            z-index: 999;
+            width: 88%;
+            left: 10%;
+            border: none;
+            outline: none;
+            font-size: 20px;
+            font-family: cursive;
+            font-weight: 600;
+            color: #464d54;
+            caret-color: black;
+            + .item-unchecked {
+              visibility: hidden;
+            }
+            + .item-checked {
+              visibility: hidden;
+            }
+          }
+          .edit-todo-notvisible {
+            display: none;
+          }
+
+          .more-options {
+            visibility: hidden;
+          }
+          &:hover {
+            .more-options {
+              visibility: visible;
+            }
+          }
+        }
+      }
+      .Bottom-nav {
+        background-color: red;
+        display: flex;
+        justify-content: space-around;
+        background-color: white;
+
+        .show-case {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 0.5em 0 0.5em;
+          font-size: 15px;
+
+          cursor: pointer;
+        }
+        .last-case {
+          min-width: 7em;
+          // visibility: hidden;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .padding {
+          position: relative;
+        }
+      }
     }
-    .typo{
-        color:gray;
-        font-size: 12px;
-        
-    }
-    .upper{
-        margin-top: 8em;
-    }
+  }
+  .typo {
+    color: gray;
+    font-size: 12px;
+  }
+  .upper {
+    margin-top: 8em;
+  }
 }
 @media only screen and (max-width: 470px) {
-    .headline-sub{
-        display: none;
-    }
-    .input-container-main{
-        width: 50%;
-    }
-    .add-todo-input{
-
-        margin-left: -1em;
-        font-size: 18px;
-    }
-    .item-left{
-        display: none;
-    }
-    .show-case{
-        margin: -1em;
-    }
-    
+  .headline-sub {
+    display: none;
   }
+  .input-container-main {
+    width: 50%;
+  }
+  .add-todo-input {
+    margin-left: -1em;
+    font-size: 18px;
+  }
+  .item-left {
+    display: none;
+  }
+  .show-case {
+    margin: -1em;
+  }
+}
 $green: #008744;
 $blue: #0057e7;
 $red: #d62d20;
@@ -201,7 +186,7 @@ $width: 100px;
   margin: 0 auto;
   width: $width;
   &:before {
-    content: '';
+    content: "";
     display: block;
     padding-top: 100%;
   }
@@ -275,6 +260,5 @@ body {
   bottom: 0;
   left: 50%;
   right: 0;
-  transform: translate(-50%,-50%);
-  
+  transform: translate(-50%, -50%);
 }
